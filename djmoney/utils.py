@@ -1,3 +1,4 @@
 # coding: utf-8
 
-get_currency_field_name = lambda name: "%s_currency" % name
+def get_currency_field_name(name):
+    return "%s_currency" % name

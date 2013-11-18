@@ -60,8 +60,10 @@ RELEVANT_QUERYSET_METHODS = ['dates', 'distinct', 'extra', 'get',
 
 def add_money_comprehension_to_queryset(qs):
     # Decorate each relevant method with understand_money in the queryset given
-    list(map(lambda attr: setattr(qs, attr, understands_money(getattr(qs, attr))),
-        RELEVANT_QUERYSET_METHODS))
+    for name in RELEVANT_QUERYSET_METHODS:
+        attr = getattr(qs, name)
+        if attr:
+            setattr(qs, name, understands_money(attr))
     return qs
 
 
